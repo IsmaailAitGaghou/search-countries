@@ -1,2 +1,188 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&display=swap');
-/* font-family: 'Nunito Sans', sans-serif; */
+
+:root {
+    --header-height: 5rem;
+
+    /* ====== Colors ===== */
+    --Very-Dark-Blue: hsl(200, 15%, 8%); /* Light Mode Text */
+    --Dark-Gray : hsl(0, 0%, 52%);       /* Light Mode Input */
+    --Very-Light-Gray: hsl(0, 0%, 98%);  /* Light Mode Background */
+    --White : hsl(0, 0%, 100%);          /* Light Mode Elements */
+
+    /* ===== Font and Typography ======= */
+    /* 16px = 1rem || 8px = .5rem  */
+    --body-font : 'Nunito Sans', sans-serif;
+    --h1-font-size : 1.5rem;
+    --h2-font-size : 1rem;
+    --normal-font-size: .938rem;
+    --small-font-size: .813rem;
+
+    /*======= Font weight =======*/
+    --font-medium: 300;
+    --font-semi-bold: 600;
+    --font-bold: 800;
+}
+
+@media screen and (min-width: 1024px) {
+    :root {
+        --header-height: 5.5rem;
+        --h1-font-size : 2.5rem;
+        --h2-font-size : 2.25rem;
+        --normal-font-size: 1.538rem;
+        --small-font-size: 1.413rem;
+    }
+}
+
+/* ======== Base ========== */
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--body-font);
+    font-size: var(--normal-font-size);
+    background-color: var(--Very-Light-Gray);
+    color: var(--Very-Dark-Blue);
+    transition: background .3 ease-in;
+}
+
+h1, h2 {
+    font-weight: var(--font-semi-bold);
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* ======= Reusable Classes */
+.container {
+    /* max-width: 1024px; */
+    margin-inline: 1.5rem;
+}
+
+.grid {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.flex {
+    display: flex;
+    gap: 1.5rem;
+}
+
+section {
+    margin-block: 7rem 1rem;
+}
+
+/* ====== Header Section ======= */
+
+.header {
+    height: var(--header-height);
+    display: flex;
+    align-items: center;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    background-color: var(--White);
+    box-shadow: 5px -3px 10px .1px var(--Very-Dark-Blue);
+}
+
+.header__container {
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header__text {
+    font-size: var(--h2-font-size);
+    color: var(--Very-Dark-Blue);
+}
+
+.switcher__theme {
+    color: var(--Very-Dark-Blue);
+    font-weight: var(--font-semi-bold);
+    align-items: center;
+    gap: .5rem;
+}
+
+ion-icon {
+    color: var(--Very-Dark-Blue);
+}
+
+/* Search Section */
+
+.search__section {
+    position: relative;
+    display: flex;
+    min-width: 100px;
+}
+
+.search {
+    border: 1px solid var(--White);
+    border-radius: 8px ;
+    height: 20px;
+    width: 100%;
+    padding: 25px 23px 25px 50px;
+    background-color: var(--White);
+    outline: 0;
+    box-shadow: .1px .1px 4px 1px rgba(0, 0, 0, 0.093);
+}
+
+.search__icon {
+    position: absolute;
+    top: 17px;
+    left: 19px;
+    width: 14px;
+}
+
+.search:hover, .search:focus {
+    border: 1px solid #ebebeb;
+}
+
+.filter {
+    margin-block: 1rem 1rem;
+}
+
+.Region {
+    /* height: 20px; */
+    padding: 18px 40px 18px 20px ;
+    border: none;
+    box-shadow: .1px .1px 4px 1px rgba(0, 0, 0, 0.093);
+    border-radius: 8px;
+}
+
+select > option {
+    background-color: var(--White);
+}
+
+@media screen and (min-width: 768px) {
+    .container {
+        margin-inline: 3rem;
+    }
+    .input__section {
+        display: grid;
+        align-items: center;
+        grid-template-columns: repeat(9, 1fr);
+    }
+
+    .filter {
+        grid-area: 1 / 9 / 2 /10;
+    }
+
+    .search__section {
+        grid-area: 1 / 1/ 2/8;
+    }
+}
