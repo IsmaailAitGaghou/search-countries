@@ -33,6 +33,13 @@
     }
 }
 
+body.dark__theme {
+    /* ====== Colors ===== */
+    --Very-Dark-Blue: hsl(210, 18%, 89%);
+    --Very-Light-Gray: hsl(207, 26%, 17%); 
+    --White : hsl(209, 23%, 22%);          
+}
+
 /* ======== Base ========== */
 *,
 *::after,
@@ -66,6 +73,11 @@ img {
     max-width: 100%;
     height: auto;
 }
+/* 
+.country__image {
+    width: 300px;
+    height: 150px;
+}  */
 
 /* ======= Reusable Classes */
 .container {
@@ -96,6 +108,7 @@ section {
     width: 100%;
     position: fixed;
     top: 0;
+    z-index: 100;
     background-color: var(--White);
     box-shadow: 5px -3px 10px .1px var(--Very-Dark-Blue);
 }
@@ -159,9 +172,12 @@ ion-icon {
 .Region {
     /* height: 20px; */
     padding: 18px 40px 18px 20px ;
+    background-color: var(--White);
+    color: var(--Very-Dark-Blue);
     border: none;
     box-shadow: .1px .1px 4px 1px rgba(0, 0, 0, 0.093);
     border-radius: 8px;
+    outline: 0;
 }
 
 select > option {
@@ -170,7 +186,7 @@ select > option {
 
 @media screen and (min-width: 768px) {
     .container {
-        margin-inline: 3rem;
+        margin-inline: 6rem;
     }
     .input__section {
         display: grid;
@@ -186,3 +202,64 @@ select > option {
         grid-area: 1 / 1/ 2/8;
     }
 }
+
+/* ======= Countries section ======== */
+
+.card {
+    background-color: var(--White);
+    border-radius: .5rem;
+    box-shadow: .1px .1px 4px 1px rgba(0, 0, 0, 0.093);
+    margin-block-end: 3rem;
+    margin-block-start: 2rem;
+}
+
+.card img {
+    border-radius: .6rem .6rem 0 0;
+}
+
+.card__info {
+    padding: 1.7rem;
+    /* font-weight: var(--font-semi-bold); */
+}
+
+.card__info h2 {
+    font-size: 1.5rem;
+    margin-bottom: .6rem;
+    font-weight: var(--font-bold);
+}
+
+.card__info p {
+    font-size: 1.1rem;
+    margin-bottom: .2rem;
+    font-weight: var(--font-medium);
+}
+
+@media screen and (min-width: 768px) {
+    .countries {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+    }
+
+    .card img {
+        width: 300px;
+    }
+
+    .card__info h2 {
+        font-weight: var(--font-bold);
+    }
+
+    .card__info p {
+        font-size: 1.1rem;
+        font-weight: var(--font-medium);
+    }
+}
+
+/* ========== Theme ======= */
+
+.switcher__theme {
+    cursor: pointer;
+}
+
