@@ -23,32 +23,26 @@
 
     <section class="countries__section">
         <div class="container">
-            <div class="input__section">
-                <div class="search__section">
-                    <i class="ri-search-line search__icon"></i>
-                    <input type="text" placeholder="Search for a country..." class="search">
+                <div class="input__section">
+                    <div class="search__section">
+                        <i class="ri-search-line search__icon"></i>
+                        <input type="text" placeholder="Search for a country..." class="search">
+                    </div>
+                    <div class="filter">
+                        <select name="filter" id="filter" class="Region">
+                            <option value="">Filter by Region</option>
+                            <option value="AF">Africa</option>
+                            <option value="AM">America</option>
+                            <option value="AS">Asia</option>
+                            <option value="EU">Europe</option>
+                            <option value="OC">Oceania</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="filter">
-                    <select name="filter" id="filter" class="Region">
-                        <option value="">Filter by Region</option>
-                        <option value="africa">Africa</option>
-                        <option value="america">America</option>
-                        <option value="asia">Asia</option>
-                        <option value="europe">Europe</option>
-                        <option value="oceania">Oceania</option>
-                    </select>
-                </div>
-            </div>
 
-            <div class="countries">
-                
+                <div class="countries">
                 </div>
-                
-                
-                
-                
             </div>
-        </div>
     </section>
 
     <script src="assets/js/app.js"></script>

@@ -209,12 +209,15 @@ select > option {
     background-color: var(--White);
     border-radius: .5rem;
     box-shadow: .1px .1px 4px 1px rgba(0, 0, 0, 0.093);
-    margin-block-end: 3rem;
-    margin-block-start: 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit , minmax(200px, 1fr));
+    margin-block: 3rem 2rem;
 }
 
 .card img {
     border-radius: .6rem .6rem 0 0;
+    width: 100%;
+    aspect-ratio: 1.5/1;
 }
 
 .card__info {
@@ -234,6 +237,8 @@ select > option {
     font-weight: var(--font-medium);
 }
 
+
+
 @media screen and (min-width: 768px) {
     .countries {
         display: flex;
@@ -241,10 +246,6 @@ select > option {
         justify-content: center;
         align-items: center;
         gap: 2rem;
-    }
-
-    .card img {
-        width: 300px;
     }
 
     .card__info h2 {
