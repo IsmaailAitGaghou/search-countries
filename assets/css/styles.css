@@ -148,17 +148,30 @@ ion-icon {
     border-radius: 8px ;
     height: 20px;
     width: 100%;
-    padding: 25px 23px 25px 50px;
+    color: var(--Very-Dark-Blue);
+    padding: 25px 23px 25px 65px;
     background-color: var(--White);
     outline: 0;
     box-shadow: .1px .1px 4px 1px rgba(0, 0, 0, 0.093);
+    font-size: 1.2rem;
+    transition: all .3s linear;
 }
+
 
 .search__icon {
     position: absolute;
-    top: 17px;
-    left: 19px;
+    top: 1.5px;
+    left: 1px;
     width: 14px;
+    cursor: pointer;
+    background-color: rgb(227, 226, 226);
+    padding: 12.4px 35px 12.4px 14px;
+    border-radius: 8px 0 0 8px;
+    transition: all .2s linear;
+}
+
+body.dark__theme .search__icon {
+    background-color: rgb(116, 116, 116);
 }
 
 .search:hover, .search:focus {
@@ -177,11 +190,14 @@ ion-icon {
     border: none;
     box-shadow: .1px .1px 4px 1px rgba(0, 0, 0, 0.093);
     border-radius: 8px;
+    transition: all .2s linear;
+    font-size: 1rem;
     outline: 0;
 }
 
-select > option {
+select option {
     background-color: var(--White);
+    padding: 1rem;
 }
 
 @media screen and (min-width: 768px) {
@@ -201,6 +217,10 @@ select > option {
     .search__section {
         grid-area: 1 / 1/ 2/8;
     }
+
+    .search::placeholder {
+        font-size: 1.2rem;
+    }
 }
 
 /* ======= Countries section ======== */
@@ -212,6 +232,8 @@ select > option {
     display: grid;
     grid-template-columns: repeat(auto-fit , minmax(200px, 1fr));
     margin-block: 3rem 2rem;
+    cursor: pointer;
+    transition: all .3s linear;
 }
 
 .card img {
@@ -264,3 +286,23 @@ select > option {
     cursor: pointer;
 }
 
+/* ====== scroll Bar ======= */
+
+::-webkit-scrollbar {
+    width: .5rem;
+    background-color: rgb(232, 232, 232);
+    border-radius: 6rem;
+}
+
+::-webkit-scrollbar:hover {
+    background-color: rgb(210, 208, 208);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgb(39, 39, 39);
+    border-radius: 10rem;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(0, 0, 0);
+}

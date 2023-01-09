@@ -2,24 +2,26 @@
 
 const themebutton = document.querySelector(".change__theme");
 const darkTheme = "dark__theme";
-const iconTheme = "ri-moon-fill";
+const iconTheme = "ri-sun-line";
 
 const selectedTheme = localStorage.getItem("selected-theme");
 const selectedIcon = localStorage.getItem("selected-icon");
 
 const getCurrentTheme = () => {
-  document.body.classList.contains(darkTheme) ? "dark" : "light";
+  return document.body.classList.contains(darkTheme) ? "dark" : "light";
 };
 
 const getCurrentIcon = () => {
-  themebutton.classList.contains(iconTheme) ? "ri-moon-line" : "ri-moon-fill";
+  return themebutton.classList.contains(iconTheme)
+    ? "ri-sun-line"
+    : "ri-moon-line";
 };
 
 if (selectedTheme) {
   document.body.classList[selectedTheme === "dark" ? "add" : "remove"](
     darkTheme
   );
-  themebutton.classList[selectedIcon === "ri-moon-line" ? "add" : "remove"](
+  themebutton.classList[selectedIcon === "ri-sun-line" ? "add" : "remove"](
     iconTheme
   );
 }
@@ -38,40 +40,66 @@ const Countries = document.querySelector(".countries");
 const Search = document.querySelector(".search");
 const Continent = document.querySelector(".Region");
 
-Continent.addEventListener('change', ()=> {
 
-    
-    console.log(Continent.options[Continent.selectedIndex].textContent);
-    console.log(Continent.value);
-
-})
 
 const getCountries = async () => {
   const res = await fetch("https://restcountries.com/v3.1/all");
   const data = await res.json();
 
   CountryElement(data)
+  localStorage.setItem("countries", JSON.stringify(data));
 };
 
 // Search for countries by Name of the Country
 
 const getCountriesBySearch = async () => {
+
   const countryName = Search.value;
+  const newUrl = "/" + countryName;
 
   const res = await fetch("https://restcountries.com/v3.1/name/" + countryName);
   const data = await res.json();
 
   Countries.innerHTML = "";
 
+
   if(Search.value === "") {
     getCountries();
   } else {
+
+    if(!data.length) {
+      Countries.innerHTML = "There is no country with name: " +countryName;
+      return false
+    }
+     
     CountryElement(data);
   }
+
+  history.pushState(null , null , newUrl)
 };
 
 const getCountriesByRegion = async () => {
-    
+  const FilterRegion = Continent.value;
+  const newUrl = "/" + FilterRegion;
+
+    console.log(FilterRegion);
+    const res = await fetch("https://restcountries.com/v3.1/region/" + FilterRegion);
+    const data = await res.json();
+  
+    Countries.innerHTML = "";
+  
+    if(FilterRegion === "") {
+      getCountries();
+      return
+    } 
+    CountryElement(data);
+  
+
+  // console.log(data);
+  
+  
+
+  history.pushState(null, null , newUrl)
 }
 
 
@@ -85,14 +113,14 @@ const CountryElement = (dataProvided) => {
       const capital = country.capital;
 
       const countryCard = `
-        <div class="card country">
+        <div class="card country animate__animated animate__bounceInLeft">
                 <div class="country__image">
-                    <img src="${flag}" alt="">
+                    <img src="${flag}" alt=${flag}" loading="lazy" />
                 </div>
                 <div class="card__info">
                     <h2 class="card__title" title=${Title}>${
-                        Title.length >= 15 ? Title.slice(0, 15).trim() + " ..." : Title
-                    }</h2>
+        Title.length >= 20 ? Title.slice(0, 20).trim() + " ..." : Title
+      }</h2>
                     <div class="card__descrition">
                         <p><code>Population:</code> <span>${population}</span></p>
                         <p><code>Region:</code> <span>${region}</span></p>
@@ -109,6 +137,10 @@ const CountryElement = (dataProvided) => {
     });
 }
 
+
 Search.addEventListener('keyup' , getCountriesBySearch)
 
+Continent.addEventListener("change", getCountriesByRegion);
+
 window.addEventListener("DOMContentLoaded", getCountries());
+
