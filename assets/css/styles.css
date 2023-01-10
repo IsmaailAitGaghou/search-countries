@@ -58,7 +58,7 @@ body {
     font-size: var(--normal-font-size);
     background-color: var(--Very-Light-Gray);
     color: var(--Very-Dark-Blue);
-    transition: background .3 ease-in;
+    transition: all .4 ease-in;
 }
 
 h1, h2 {
@@ -80,6 +80,10 @@ img {
 }  */
 
 /* ======= Reusable Classes */
+
+body.dark__theme {
+    transition: all .3s linear;
+}
 .container {
     /* max-width: 1024px; */
     margin-inline: 1.5rem;
@@ -160,19 +164,12 @@ ion-icon {
 
 .search__icon {
     position: absolute;
-    top: 1.5px;
-    left: 1px;
-    width: 14px;
+    top: 12px;
+    left: 15px;
     cursor: pointer;
-    background-color: rgb(227, 226, 226);
-    padding: 12.4px 35px 12.4px 14px;
-    border-radius: 8px 0 0 8px;
     transition: all .2s linear;
 }
 
-body.dark__theme .search__icon {
-    background-color: rgb(116, 116, 116);
-}
 
 .search:hover, .search:focus {
     border: 1px solid #ebebeb;
@@ -231,8 +228,9 @@ select option {
     box-shadow: .1px .1px 4px 1px rgba(0, 0, 0, 0.093);
     display: grid;
     grid-template-columns: repeat(auto-fit , minmax(200px, 1fr));
-    margin-block: 3rem 2rem;
-    cursor: pointer;
+    margin-block: 1.5rem;
+    aspect-ratio: 1/1.4;
+    /* cursor: pointer; */
     transition: all .3s linear;
 }
 
@@ -243,7 +241,7 @@ select option {
 }
 
 .card__info {
-    padding: 1.7rem;
+    padding-left: 1.7rem;
     /* font-weight: var(--font-semi-bold); */
 }
 
@@ -251,6 +249,11 @@ select option {
     font-size: 1.5rem;
     margin-bottom: .6rem;
     font-weight: var(--font-bold);
+}
+
+.card__title {
+    width: 300px;
+    cursor: pointer;
 }
 
 .card__info p {
@@ -306,3 +309,11 @@ select option {
 ::-webkit-scrollbar-thumb:hover {
     background-color: rgb(0, 0, 0);
 }
+
+.hide {
+    display: none;
+}
+
+/* .details {
+    margin-block-start: 5rem;
+} */
