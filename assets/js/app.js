@@ -99,7 +99,7 @@ const getCountriesByRegion = async () => {
   // history.pushState(null, null, newUrl);
 };
 
-const titleDatails = document.querySelector(".title__datail");
+// const titleDatails = document.querySelector(".title__datail");
 
 const CountryElement = (dataProvided) => {
   dataProvided.map((country) => {
@@ -136,10 +136,14 @@ const CountryElement = (dataProvided) => {
   
 
   card.forEach((c) => {
-    c.addEventListener("click", (e) => {
-      console.log(e.target.textContent);
+    c.addEventListener("click", async (e) => {
+      
+      const countryName = e.target.textContent;
 
-      localStorage.setItem("card__title", e.target.textContent)
+      const result = await fetch("https://restcountries.com/v3.1/name/"+ countryName);
+      countriesData = await result.json();
+
+      localStorage.setItem("country", JSON.stringify( countriesData));
       
       window.location.assign("/details.html")
 

@@ -314,6 +314,38 @@ select option {
     display: none;
 }
 
-/* .details {
-    margin-block-start: 5rem;
+/* ======== Country Details ========= */
+
+.details__section {
+    margin-block: 8rem;
+}
+
+.details__section .button {
+    padding: .5rem 1.8rem .5rem 1.1rem;
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    background-color: var(--White);
+    border: none;
+    box-shadow: var(--Very-Dark-Blue) 0px 0px 5px;
+    border-radius: .2rem;
+    margin-bottom: 4rem;
+    color: var(--Very-Dark-Blue);
+}
+/* 
+.details__section .button.dark__theme {
+    color: #ebebeb;
 } */
+
+.details__section .button i {
+    font-size: 1.4rem;
+    padding-right: .7rem;
+}
+
+.countries__image img {
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.title__datail {
+    margin-block: 1.4rem;
+}

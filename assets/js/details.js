@@ -1,7 +1,9 @@
-// const titleDatails = document.querySelector(".title__datail");
+
 
 const getDatafromlocal = () => {
-  titleDatails.textContent = localStorage.getItem("card__title");
+  //   titleDatails.textContent = localStorage.getItem("country");
+
+  console.log(localStorage.getItem("country"));
 };
 
 getDatafromlocal();
