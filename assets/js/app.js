@@ -45,10 +45,9 @@ const getCountries = async () => {
   const res = await fetch("https://restcountries.com/v3.1/all");
   countriesData = await res.json();
 
-  CountryElement(countriesData)
+  CountryElement(countriesData);
 
   localStorage.setItem("countries", JSON.stringify(countriesData));
-
 };
 
 // Search for countries by Name of the Country
@@ -72,8 +71,6 @@ const getCountriesBySearch = async () => {
 
     CountryElement(countriesData);
   }
-
-  
 
   // history.pushState(null, null, newUrl);
 };
@@ -133,26 +130,22 @@ const CountryElement = (dataProvided) => {
   });
 
   const card = document.querySelectorAll(".card__title");
-  
 
   card.forEach((c) => {
     c.addEventListener("click", async (e) => {
-      
       const countryName = e.target.textContent;
 
-      const result = await fetch("https://restcountries.com/v3.1/name/"+ countryName);
+      const result = await fetch(
+        "https://restcountries.com/v3.1/name/" + countryName
+      );
       countriesData = await result.json();
 
-      localStorage.setItem("country", JSON.stringify( countriesData));
-      
-      window.location.assign("/details.html")
+      localStorage.setItem("country", JSON.stringify(countriesData));
 
-      // titleDatails.innerHTML = localStorage.getItem("card__title");
-
+      window.location.assign("/details.html");
     });
   });
 };
-
 
 Search.addEventListener("keyup", getCountriesBySearch);
 

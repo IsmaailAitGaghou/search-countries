@@ -37,7 +37,7 @@ body.dark__theme {
     /* ====== Colors ===== */
     --Very-Dark-Blue: hsl(210, 18%, 89%);
     --Very-Light-Gray: hsl(207, 26%, 17%); 
-    --White : hsl(209, 23%, 22%);          
+    --White : hsl(209, 23%, 22%);
 }
 
 /* ======== Base ========== */
@@ -59,6 +59,8 @@ body {
     background-color: var(--Very-Light-Gray);
     color: var(--Very-Dark-Blue);
     transition: all .4 ease-in;
+    position: relative;
+    overflow-x: hidden;
 }
 
 h1, h2 {
@@ -73,11 +75,6 @@ img {
     max-width: 100%;
     height: auto;
 }
-/* 
-.country__image {
-    width: 300px;
-    height: 150px;
-}  */
 
 /* ======= Reusable Classes */
 
@@ -180,7 +177,6 @@ ion-icon {
 }
 
 .Region {
-    /* height: 20px; */
     padding: 18px 40px 18px 20px ;
     background-color: var(--White);
     color: var(--Very-Dark-Blue);
@@ -230,7 +226,6 @@ select option {
     grid-template-columns: repeat(auto-fit , minmax(200px, 1fr));
     margin-block: 1.5rem;
     aspect-ratio: 1/1.4;
-    /* cursor: pointer; */
     transition: all .3s linear;
 }
 
@@ -242,7 +237,6 @@ select option {
 
 .card__info {
     padding-left: 1.7rem;
-    /* font-weight: var(--font-semi-bold); */
 }
 
 .card__info h2 {
@@ -320,24 +314,23 @@ select option {
     margin-block: 8rem;
 }
 
-.details__section .button {
-    padding: .5rem 1.8rem .5rem 1.1rem;
+.details__section .btn {
+    padding: .5rem 1.4rem .5rem 1.4rem;
+    /* width: 7rem; */
     font-size: 1.3rem;
     display: flex;
     align-items: center;
+    justify-content: center;
     background-color: var(--White);
     border: none;
     box-shadow: var(--Very-Dark-Blue) 0px 0px 5px;
     border-radius: .2rem;
     margin-bottom: 4rem;
     color: var(--Very-Dark-Blue);
+    cursor: pointer;
 }
-/* 
-.details__section .button.dark__theme {
-    color: #ebebeb;
-} */
 
-.details__section .button i {
+.details__section .btn i {
     font-size: 1.4rem;
     padding-right: .7rem;
 }
@@ -347,5 +340,99 @@ select option {
 }
 
 .title__datail {
-    margin-block: 1.4rem;
+    margin-block: 1.5rem;
+}
+
+ul {
+    list-style: none;
+    font-weight: var(--font-semi-bold);
+    margin-block-end: 2.5rem;
+}
+
+li {
+    margin-bottom: .6rem;
+}
+
+.country__info span {
+    font-weight: var(--font-medium);
+}
+
+.first__info {
+    margin-bottom: 2rem;
+}
+
+.border__countries p {
+    font-weight: var(--font-bold);
+    font-size: .98rem;
+    margin-bottom: 1.3rem;
+}
+
+.border__buttons {
+    display: grid;
+    grid-template-columns: repeat( auto-fit, minmax(90px, 1fr));
+    gap: 2rem;
+}
+
+.border__buttons .btn {
+    font-size: 1rem;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+@media screen and (min-width: 768px) {
+    .country__details {
+        display: flex;
+        gap: 3rem;
+    }
+
+    .first__info {
+        margin-bottom: .5rem;
+    }
+
+    .title__datail {
+        margin-block: 0 1rem;
+    }
+
+    .countries__image {
+        width: 40%;
+        aspect-ratio: 1.3/1;
+    }
+
+    .infomation {
+        display: flex;
+        gap: 8rem;
+    }
+
+    ul {
+        font-size: 1rem;
+        margin-block-end: .1rem;
+    }
+
+    li {
+        margin-bottom: 1.2rem;
+    }
+
+    .border__countries {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+    }
+
+    .border__buttons {
+        display: flex;
+    }
+
+    .border__buttons .btn {
+        font-size: .8rem;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .country__details {
+        flex-direction: column;
+    }
+
+    .countries__image {
+        width: 100%;
+    }
 }
