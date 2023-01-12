@@ -1,9 +1,28 @@
 const button = document.querySelector(".button");
 const CountryDetails = document.querySelector(".country__details");
+const ClickedCountry = JSON.parse(localStorage.getItem("country"));
+const CountryData = JSON.parse(localStorage.getItem("countries"));
+const btn = document.querySelector(".border__buttons");
+
+const borderCountries = [];
+
+// const getBorderCountries = (borders) => {
+//   CountryData.map((selectedCountry) => {
+//     borders.map((border) => {
+//       if (border === selectedCountry.cca3) {
+//         // console.log(selectedCountry.name.common);
+//         borderCountries.push(selectedCountry.name.common);
+
+//         console.log(borderCountries);
+
+//         // return <button class="btn">${selectedCountry.name.common}</button>;
+//       }
+//     });
+//   });
+// };
 
 const getDatafromlocal = () => {
   // console.log(localStorage.getItem("country"));
-  const ClickedCountry = JSON.parse(localStorage.getItem("country"));
 
   for (let i = 0; i < ClickedCountry.length; i++) {
     const country = ClickedCountry[i];
@@ -17,8 +36,17 @@ const getDatafromlocal = () => {
     const domain = country.tld[0];
     const languages = country.languages;
     const borders = country.borders;
+    // console.log(borders);
 
-    console.log(borders);
+    CountryData.map((selectedCountry) => {
+      borders.map((border) => {
+        if (border === selectedCountry.cca3) {
+          return borderCountries.push(selectedCountry.name.common);
+          // console.log(selectedCountry.name.common);
+        }
+      });
+    });
+    console.log(borderCountries);
 
     CountryDetails.innerHTML = `
       <div class="countries__image">
@@ -49,10 +77,7 @@ const getDatafromlocal = () => {
                     <div class="border__countries">
                         <p>Border Countries: </p>
                         <div class="border__buttons">
-                            <button class="btn">Algery</button>
-                            <button class="btn">Spain</button>
-                            <button class="btn">Spain</button>
-                            <button class="btn">Spain</button>
+
                         </div>
                     </div>
                 </div>
@@ -63,10 +88,6 @@ const getDatafromlocal = () => {
 };
 
 getDatafromlocal();
-
-// const getBorderCountries = () => {
-
-// }
 
 button.addEventListener("click", () => {
   window.history.back();

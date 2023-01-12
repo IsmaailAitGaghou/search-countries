@@ -45,6 +45,8 @@ const getCountries = async () => {
   const res = await fetch("https://restcountries.com/v3.1/all");
   countriesData = await res.json();
 
+  //   console.log(countriesData);
+
   CountryElement(countriesData);
 
   localStorage.setItem("countries", JSON.stringify(countriesData));
@@ -52,57 +54,75 @@ const getCountries = async () => {
 
 // Search for countries by Name of the Country
 
-const getCountriesBySearch = async () => {
-  const countryName = Search.value;
-  // const newUrl = "/" + countryName;
+Search.addEventListener("keyup", (e) => {
+  let KeySearch = e.target.value;
+  let data = JSON.parse(localStorage.getItem("countries"));
+  //   console.log(data);
 
-  const res = await fetch("https://restcountries.com/v3.1/name/" + countryName);
-  countriesData = await res.json();
-
+  Continent.value = "";
   Countries.innerHTML = "";
 
-  if (Search.value === "") {
-    getCountries();
+  //   console.log(e.target.value);
+
+  if (KeySearch) {
+    CountryElement(
+      data.filter((x) => {
+        return x.name.common.startsWith(
+          KeySearch[0].toUpperCase() + KeySearch.slice(1, -1)
+        );
+      })
+    );
   } else {
-    if (!countriesData.length) {
-      Countries.innerHTML = "There is no country with name: " + countryName;
-      return false;
-    }
-
-    CountryElement(countriesData);
+    CountryElement(data);
   }
+});
 
-  // history.pushState(null, null, newUrl);
-};
-
-const getCountriesByRegion = async () => {
+Continent.addEventListener("change", () => {
   const FilterRegion = Continent.value;
-  // const newUrl = "/" + FilterRegion;
-
-  console.log(FilterRegion);
-  const res = await fetch(
-    "https://restcountries.com/v3.1/region/" + FilterRegion
-  );
-  countriesData = await res.json();
+  const data = JSON.parse(localStorage.getItem("countries"));
 
   Countries.innerHTML = "";
+  Search.value = "";
 
   if (FilterRegion === "") {
-    getCountries();
-    return;
+    CountryElement(data);
+  } else {
+    CountryElement(
+      data.filter((x) => {
+        return x.region === FilterRegion;
+      })
+    );
   }
-  CountryElement(countriesData);
+});
 
-  // history.pushState(null, null, newUrl);
-};
+// const getCountriesByRegion = async () => {
+//   const FilterRegion = Continent.value;
+//   // const newUrl = "/" + FilterRegion;
 
-// const titleDatails = document.querySelector(".title__datail");
+//   console.log(FilterRegion);
+//   const res = await fetch(
+//     "https://restcountries.com/v3.1/region/" + FilterRegion
+//   );
+//   countriesData = await res.json();
+
+//   Countries.innerHTML = "";
+
+//   if (FilterRegion === "") {
+//     getCountries();
+//     return;
+//   }
+//   CountryElement(countriesData);
+
+//   // history.pushState(null, null, newUrl);
+// };
+
+// // const titleDatails = document.querySelector(".title__datail");
 
 const CountryElement = (dataProvided) => {
   dataProvided.map((country) => {
     const Title = country.name.common;
     const flag = country.flags.png;
-    const population = country.population;
+    const population = country.population.toLocaleString("en-US");
     const region = country.region;
     const capital = country.capital;
 
@@ -146,9 +166,5 @@ const CountryElement = (dataProvided) => {
     });
   });
 };
-
-Search.addEventListener("keyup", getCountriesBySearch);
-
-Continent.addEventListener("change", getCountriesByRegion);
 
 window.addEventListener("DOMContentLoaded", getCountries());
