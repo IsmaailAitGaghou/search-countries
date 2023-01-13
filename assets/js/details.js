@@ -4,31 +4,12 @@ const ClickedCountry = JSON.parse(localStorage.getItem("country"));
 const CountryData = JSON.parse(localStorage.getItem("countries"));
 const btn = document.querySelector(".border__buttons");
 
-const borderCountries = [];
-
-// const getBorderCountries = (borders) => {
-//   CountryData.map((selectedCountry) => {
-//     borders.map((border) => {
-//       if (border === selectedCountry.cca3) {
-//         // console.log(selectedCountry.name.common);
-//         borderCountries.push(selectedCountry.name.common);
-
-//         console.log(borderCountries);
-
-//         // return <button class="btn">${selectedCountry.name.common}</button>;
-//       }
-//     });
-//   });
-// };
-
 const getDatafromlocal = () => {
-  // console.log(localStorage.getItem("country"));
-
   for (let i = 0; i < ClickedCountry.length; i++) {
     const country = ClickedCountry[i];
     const countryName = country.name.common;
-    const flag = country.flags.png;
-    const population = country.population;
+    const flag = country.flags.svg;
+    const population = country.population.toLocaleString("en-US");
     const region = country.region;
     const subRegion = country.subregion;
     const capital = country.capital;
@@ -38,15 +19,26 @@ const getDatafromlocal = () => {
     const borders = country.borders;
     // console.log(borders);
 
-    CountryData.map((selectedCountry) => {
-      borders.map((border) => {
-        if (border === selectedCountry.cca3) {
-          return borderCountries.push(selectedCountry.name.common);
-          // console.log(selectedCountry.name.common);
-        }
-      });
+    // const getBorders = () => {
+    //   CountryData.map((selectedCountry) => {
+    //     borders.map((border) => {
+    //       if (border === selectedCountry.cca3) {
+    //         const button = document.createElement("button");
+    //         button.setAttribute("class", "btn");
+    //         button.innerHTML = selectedCountry.name.common;
+    //         btn.appendChild(button);
+    //         console.log(btn);
+    //         // console.log(selectedCountry.name.common);
+    //       }
+    //     });
+    //   });
+    // };
+
+    const bor = borders.map((b) => {
+      return (btn.innerHTML = b);
     });
-    console.log(borderCountries);
+
+    // console.log(bor);
 
     CountryDetails.innerHTML = `
       <div class="countries__image">
@@ -77,7 +69,7 @@ const getDatafromlocal = () => {
                     <div class="border__countries">
                         <p>Border Countries: </p>
                         <div class="border__buttons">
-
+                              ${bor}
                         </div>
                     </div>
                 </div>
