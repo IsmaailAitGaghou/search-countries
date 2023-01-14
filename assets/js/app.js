@@ -47,7 +47,11 @@ const getCountries = async () => {
 
   //   console.log(countriesData);
 
-  CountryElement(countriesData);
+  CountryElement(
+    countriesData.filter((country) => {
+      return country.name.common !== "Israel";
+    })
+  );
 
   localStorage.setItem("countries", JSON.stringify(countriesData));
 };
@@ -67,8 +71,12 @@ Search.addEventListener("keyup", (e) => {
   if (KeySearch) {
     CountryElement(
       data.filter((x) => {
-        return x.name.common.startsWith(
-          KeySearch[0].toUpperCase() + KeySearch.slice(1, -1)
+        return (
+          x.name.common.startsWith(
+            KeySearch[0].toUpperCase() + KeySearch.slice(1, -1)
+          ) &&
+          x.name.common !== "Israel" &&
+          x.name.common !== "Western Sahara"
         );
       })
     );
@@ -85,11 +93,19 @@ Continent.addEventListener("change", () => {
   Search.value = "";
 
   if (FilterRegion === "") {
-    CountryElement(data);
+    CountryElement(
+      data.filter((country) => {
+        return country.name.common !== "Israel";
+      })
+    );
   } else {
     CountryElement(
       data.filter((x) => {
-        return x.region === FilterRegion;
+        return (
+          x.region === FilterRegion &&
+          x.name.common !== "Israel" &&
+          x.name.common !== "Western Sahara"
+        );
       })
     );
   }
