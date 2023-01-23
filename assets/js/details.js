@@ -39,8 +39,8 @@ const getDatafromlocal = () => {
     });
 
     // console.log(bor);
-
-    CountryDetails.innerHTML = `
+    // String.raw is an extention for html Syntax highlighting in Javascript
+    CountryDetails.innerHTML = String.raw` 
       <div class="countries__image">
           <img src="${flag}" alt="flag of ${countryName}" />
       </div>

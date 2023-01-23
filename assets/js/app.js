@@ -49,7 +49,10 @@ const getCountries = async () => {
 
   CountryElement(
     countriesData.filter((country) => {
-      return country.name.common !== "Israel";
+      return (
+        country.name.common !== "Israel" &&
+        country.name.common !== "Western Sahara"
+      );
     })
   );
 
